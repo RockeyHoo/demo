@@ -11,7 +11,7 @@
     <modules>
         <module>open-async-demo</module>
         <module>easyrule-core</module>
-        <module>Netty-in-Action</module>
+        <module>netty-in-action</module>
     </modules>
 
     <licenses>
