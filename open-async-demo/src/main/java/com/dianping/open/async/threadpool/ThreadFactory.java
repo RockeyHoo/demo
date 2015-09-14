@@ -1,9 +1,8 @@
 package com.dianping.open.async.threadpool;
 
-import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class DefaultThreadFactory implements ThreadFactory
+public class ThreadFactory implements java.util.concurrent.ThreadFactory
 {
 
     static final AtomicInteger poolNumber = new AtomicInteger(1);
@@ -16,17 +15,17 @@ public class DefaultThreadFactory implements ThreadFactory
 
     boolean isDaemon = true;
 
-    public DefaultThreadFactory()
+    public ThreadFactory()
     {
         this("Default-Pool");
     }
 
-    public DefaultThreadFactory(String name)
+    public ThreadFactory(String name)
     {
         this(name, true);
     }
 
-    public DefaultThreadFactory(String preffix, boolean daemon)
+    public ThreadFactory(String preffix, boolean daemon)
     {
         this.threadNumber = new AtomicInteger(1);
         this.group = new ThreadGroup(preffix + "-" + poolNumber.getAndIncrement() + "-threadGroup");
@@ -34,6 +33,7 @@ public class DefaultThreadFactory implements ThreadFactory
         this.isDaemon = daemon;
     }
 
+    @Override
     public Thread newThread(Runnable r)
     {
         Thread t = new Thread(this.group, r, this.namePrefix + this.threadNumber.getAndIncrement(),
