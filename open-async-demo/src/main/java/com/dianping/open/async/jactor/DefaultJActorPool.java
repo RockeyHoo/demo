@@ -30,6 +30,7 @@ public class DefaultJActorPool implements JActorPool
     {
         try
         {
+            // Create a mailbox factory with a pool of 10 threads.
             mailboxFactory = JAMailboxFactory.newMailboxFactory(10);
             JAFactory jaFactory = new JAFactory();
             jaFactory.initialize(mailboxFactory.createAsyncMailbox());
